@@ -19,22 +19,22 @@ namespace API.Controllers
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Route("GetAll")]
-        public JsonResult GetAll()
+        public async Task<ActionResult> GetAll()
         {
-            return new JsonResult(employeeService.GetAllEmployees());
+            return Ok(employeeService.GetAllEmployees());
         }
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Route("Get/{id:int}")]
-        public JsonResult Get([FromRoute] int id)
+        public async Task<ActionResult> Get([FromRoute] int id)
         {
-            return new JsonResult(employeeService.GetEmployee(id));
+            return Ok(employeeService.GetEmployee(id));
         }
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Route("Add")]
-        public ActionResult Add(EmployeeDTO employeeDTO)
+        public async Task<ActionResult> Add(EmployeeDTO employeeDTO)
         {            
             return Ok(employeeService.AddEmployee(employeeDTO));
         }
@@ -42,7 +42,7 @@ namespace API.Controllers
         [HttpPatch]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Route("Update/{id:int}")]
-        public ActionResult Update([FromRoute]int id, EmployeeDTO employeeDTO)
+        public async Task<ActionResult> Update([FromRoute]int id, EmployeeDTO employeeDTO)
         {
             return Ok(employeeService.UpdateEmployee(id, employeeDTO));
         }
@@ -50,7 +50,7 @@ namespace API.Controllers
         [HttpPatch]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Route("SoftDelete/{id:int}")]
-        public ActionResult SoftDelete(int id, EmployeeDTO employeeDTO)
+        public async Task<ActionResult> SoftDelete(int id, EmployeeDTO employeeDTO)
         {
             return Ok(employeeService.SoftDeleteEmployee(id, employeeDTO));
         }
@@ -58,7 +58,7 @@ namespace API.Controllers
         [HttpDelete]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Route("HardDelete")]
-        public ActionResult HardDelete(int id)
+        public async Task<ActionResult> HardDelete(int id)
         {
             return Ok(employeeService.HardDeleteEmployee(id));
         }

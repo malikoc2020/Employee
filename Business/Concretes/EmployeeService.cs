@@ -40,7 +40,7 @@ namespace Business.Concretes
         {
             try
             {
-                var employeeEntity = new Employee()
+                var entity = new Employee()
                 {
                     FirstName = employee.FirstName,
                     MiddleName = employee.MiddleName,
@@ -49,10 +49,10 @@ namespace Business.Concretes
                     DateCreated = DateTime.Now
                 };
 
-                repository.Add(employeeEntity);
+                repository.Add(entity);
                 unitOfWork.Commit();
 
-                employee.Id = employeeEntity.Id;
+                employee.Id = entity.Id;
                 return new ReturnObjectDTO() { data = employee, successMessage= "Process is successful." };
             }
             catch (Exception)
@@ -108,7 +108,13 @@ namespace Business.Concretes
             {
                 repository.Update(entity);
                 unitOfWork.Commit();
-                return new ReturnObjectDTO() { data = employee, successMessage = "Process is successful." };
+
+                /*employee.FirstName = entity.FirstName;
+                employee.MiddleName = entity.MiddleName;
+                employee.LastName = entity.LastName;
+                employee.IsActive = entity.IsActive;*/
+
+                return new ReturnObjectDTO() { /*data = employee,*/ successMessage = "Process is successful." };
             }
             catch (Exception)
             {
@@ -118,7 +124,7 @@ namespace Business.Concretes
 
         public ReturnObjectDTO HardDeleteEmployee(int id, string updatedBy = "")
         {
-            var entity = repository.GetById(id);//GetEmployee(id);
+            var entity = repository.GetById(id);
             if (entity == null)
             {
                 return new ReturnObjectDTO() { isSuccess = false, errorMessage = "Process is NOT successful. No Record Information to be Deleted.(3)" };
