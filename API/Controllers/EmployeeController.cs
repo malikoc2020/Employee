@@ -21,14 +21,14 @@ namespace API.Controllers
         [Route("GetAll")]
         public async Task<ActionResult> GetAll()
         {
-            return Ok(employeeService.GetAllEmployees());
+            return Ok(await employeeService.GetAllEmployeesAsync());
         }
         [HttpGet]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Route("Get/{id:int}")]
         public async Task<ActionResult> Get([FromRoute] int id)
         {
-            return Ok(employeeService.GetEmployee(id));
+            return Ok(await employeeService.GetEmployeeAsync(id));
         }
 
         [HttpPost]
@@ -36,7 +36,7 @@ namespace API.Controllers
         [Route("Add")]
         public async Task<ActionResult> Add(EmployeeDTO employeeDTO)
         {            
-            return Ok(employeeService.AddEmployee(employeeDTO));
+            return Ok(await employeeService.AddEmployeeAsync(employeeDTO));
         }
 
         [HttpPatch]
@@ -44,7 +44,7 @@ namespace API.Controllers
         [Route("Update/{id:int}")]
         public async Task<ActionResult> Update([FromRoute]int id, EmployeeDTO employeeDTO)
         {
-            return Ok(employeeService.UpdateEmployee(id, employeeDTO));
+            return Ok(await employeeService.UpdateEmployeeAsync(id, employeeDTO));
         }
 
         [HttpPatch]
@@ -52,7 +52,7 @@ namespace API.Controllers
         [Route("SoftDelete/{id:int}")]
         public async Task<ActionResult> SoftDelete(int id, EmployeeDTO employeeDTO)
         {
-            return Ok(employeeService.SoftDeleteEmployee(id, employeeDTO));
+            return Ok(await employeeService.SoftDeleteEmployeeAsync(id, employeeDTO));
         }
 
         [HttpDelete]
@@ -60,7 +60,7 @@ namespace API.Controllers
         [Route("HardDelete")]
         public async Task<ActionResult> HardDelete(int id)
         {
-            return Ok(employeeService.HardDeleteEmployee(id));
+            return Ok(await employeeService.HardDeleteEmployeeAsync(id));
         }
     }
 }
