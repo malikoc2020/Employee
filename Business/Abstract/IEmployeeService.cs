@@ -1,7 +1,5 @@
 ﻿using Business.DTO;
 using Domain.Entities;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Business.Abstract
 {

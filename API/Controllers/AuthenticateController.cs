@@ -2,7 +2,6 @@
 using Business.Abstract;
 using Business.DTO;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -24,20 +23,29 @@ namespace API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Authenticate(AuthenticateModel model)
         {
-            var token = await jwtService.Authenticate(
-                new LoginDTO
+            if (ModelState.IsValid)
+            { 
+                var token = await jwtService.Authenticate(
+                    new LoginDTO
+                    {
+                        Email = model.Email,
+                        Password = model.Password
+                    }
+                    );
+
+                if (token == null)
                 {
-                    Email = model.Email,
-                    Password = model.Password
+                    return Unauthorized();
                 }
-                );
 
-            if (token == null)
-            {
-                return Unauthorized();
+                return Ok(token);
             }
-
-            return Ok(token);
+            else
+            {
+                return BadRequest(string.Join("; ", ModelState.Values
+                                        .SelectMany(x => x.Errors)
+                                        .Select(x => x.ErrorMessage)));
+            }
         }
     }
 }

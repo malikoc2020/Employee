@@ -99,7 +99,6 @@ namespace Business.Concretes
 
 
 
-
         public ReturnObjectDTO AddEmployee(EmployeeDTO employee)
         {
             try
@@ -124,7 +123,6 @@ namespace Business.Concretes
                 return new ReturnObjectDTO() { isSuccess = false, errorMessage = "Process is NOT successful." };
             }
         }
-
         public async Task<ReturnObjectDTO> AddEmployeeAsync(EmployeeDTO employee)
         {
             try
@@ -208,6 +206,7 @@ namespace Business.Concretes
             }
         }
 
+
         public ReturnObjectDTO SoftDeleteEmployee(int id, EmployeeDTO employee, string updatedBy = "")
         {
             if (id != employee.Id)
@@ -272,6 +271,8 @@ namespace Business.Concretes
                 return new ReturnObjectDTO() { isSuccess = false, errorMessage = "Process is NOT successful." };
             }
         }
+
+
         public ReturnObjectDTO HardDeleteEmployee(int id, string updatedBy = "")
         {
             var entity = repository.GetById(id);
@@ -291,7 +292,6 @@ namespace Business.Concretes
             }
 
         }
-
         public async Task<ReturnObjectDTO> HardDeleteEmployeeAsync(int id, string updatedBy = "")
         {
             var entity = await repository.GetByIdAsync(id);

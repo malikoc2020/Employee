@@ -4,11 +4,9 @@ using Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Concretes
 {
@@ -29,13 +27,13 @@ namespace Business.Concretes
             {
                 return null;
             }
-            /*kullanici mail ve şifre uyuşmuyorsa token oluşturma!*/
+            /*Check User email and password!*/
             if (!await _userManager.CheckPasswordAsync(entityUser, user.Password))
             {
                 return null;
             }
 
-            // Else we generate JSON Web Token
+            // we generate JSON Web Token
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.UTF8.GetBytes(_configuration["JWT:Key"]);
             var tokenDescriptor = new SecurityTokenDescriptor

@@ -31,36 +31,6 @@ IdentityRoleClaim<string>, IdentityUserToken<string>>
 
             builder.ApplyConfiguration(new EmployeeConfiguration());
 
-            //builder.Entity<IdentityUserClaim<string>>(entity =>
-            //{
-            //    entity.ToTable("UserClaims");
-            //});
-            //builder.Entity<IdentityUserLogin<string>>(entity =>
-            //{
-            //    entity.ToTable("UserLogins");
-            //});
-            //builder.Entity<IdentityRoleClaim<string>>(entity =>
-            //{
-            //    entity.ToTable("RoleClaims");
-            //});
-            //builder.Entity<IdentityUserToken<string>>(entity =>
-            //{
-            //    entity.ToTable("UserTokens");
-            //});
-            //builder.Entity<UserRole>(userRole =>
-            //{
-            //    userRole.ToTable("UserRoles");
-
-            //    userRole.HasKey(ur => new { ur.UserId, ur.RoleId });
-
-            //    userRole.HasOne(ur => ur.Role)
-            //        .WithMany(r => r.UserRoles)
-            //        .HasForeignKey(ur => ur.RoleId);
-
-            //    userRole.HasOne(ur => ur.User)
-            //        .WithMany(r => r.UserRoles)
-            //        .HasForeignKey(ur => ur.UserId);
-            //});
         }
     }
 }

@@ -79,15 +79,9 @@ namespace EFCore.Context
                     }
                     catch (Exception e)
                     {
-
                         //throw e;
                     }
-                    /* var result = await userManager.CreateAsync(usr, "Sifre%5");
-                     if (result.Succeeded && !String.IsNullOrEmpty(usr.DefaultRole))
-                     {
-                         await userManager.AddToRoleAsync(usr, usr.DefaultRole);
-                     }
-                    */
+
                 }
             }
 

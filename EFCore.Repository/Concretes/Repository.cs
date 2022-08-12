@@ -1,8 +1,6 @@
 ﻿using Domain.Base;
 using EntityFramework.Repository.Abstracts;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace EntityFramework.Repository.Concretes
 {
