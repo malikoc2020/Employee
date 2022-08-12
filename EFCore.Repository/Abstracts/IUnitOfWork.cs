@@ -6,5 +6,6 @@ namespace EntityFramework.Repository.Abstracts
     {
         AppDbContext Context { get; }
         void Commit();
+        Task CommitAsync();
     }
 }

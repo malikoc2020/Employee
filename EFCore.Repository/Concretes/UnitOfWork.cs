@@ -15,6 +15,11 @@ namespace EntityFramework.Repository.Concretes
         {
             Context.SaveChanges();
         }
+
+        public async Task CommitAsync()
+        {
+            await Context.SaveChangesAsync();
+        }
         public void Dispose()
         {
             Context?.Dispose();

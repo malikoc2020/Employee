@@ -22,18 +22,31 @@ namespace EntityFramework.Repository.Concretes
         {
             return unitOfWork.Context.Set<T>();
         }
-        public T GetById(int Id)
+        public T? GetById(int Id)
         {
             return GetAllAsQueryable().Where(x => x.Id == Id).FirstOrDefault();
+        }
+        public async Task<T?> GetByIdAsync(int Id)
+        {
+            return await GetAllAsQueryable().Where(x => x.Id == Id).FirstOrDefaultAsync();
         }
         public void Add(T entity)
         {
             unitOfWork.Context.Set<T>().Add(entity);
         }
+        public async Task AddAsync(T entity)
+        {
+            await unitOfWork.Context.Set<T>().AddAsync(entity);
+        }
         public void AddRange(List<T> entities)
         {
             unitOfWork.Context.Set<T>().AddRange(entities);
         }
+        public async Task AddRangeAsync(List<T> entities)
+        {
+            await unitOfWork.Context.Set<T>().AddRangeAsync(entities);
+        }
+
         public void Update(T entity)
         {
             unitOfWork.Context.Entry(entity).State = EntityState.Modified;
