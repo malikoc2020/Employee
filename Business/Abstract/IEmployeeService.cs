@@ -9,7 +9,9 @@ namespace Business.Abstract
     {
         IQueryable<Employee> EmployeesAsQueryable();
         ReturnObjectDTO GetEmployee(int id);
-        List<EmployeeDTO> GetAllEmployees();
+        //Task<ReturnObjectDTO> GetEmployeeAsync(int id);
+        ReturnObjectDTO GetAllEmployees();
+        //Task<ReturnObjectDTO> GetAllEmployeesAsync();
         ReturnObjectDTO AddEmployee(EmployeeDTO employee);
         ReturnObjectDTO UpdateEmployee(int id, EmployeeDTO employee, string updatedBy = "");
         ReturnObjectDTO SoftDeleteEmployee(int id, EmployeeDTO employee, string updatedBy = "");

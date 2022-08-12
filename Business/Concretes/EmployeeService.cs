@@ -26,7 +26,7 @@ namespace Business.Concretes
             var employee = EmployeesAsQueryable().FirstOrDefault(x => x.Id == id);
             return new ReturnObjectDTO() { data = employee, successMessage = "Process is successful." };
         }
-        public List<EmployeeDTO> GetAllEmployees()
+        public ReturnObjectDTO GetAllEmployees()
         {
             var employees =  repository.GetAllAsQueryable().Select(x=>new EmployeeDTO() {Id=x.Id
                                                                                          , FirstName = x.FirstName
@@ -34,7 +34,7 @@ namespace Business.Concretes
                                                                                          , LastName = x.LastName
                                                                                          , IsActive = x.IsActive
                                                                                          , DateCreated = x.DateCreated }).ToList();
-            return   employees ;
+            return new ReturnObjectDTO() { data = employees, successMessage = "Process is successful." };
         }
         public ReturnObjectDTO AddEmployee(EmployeeDTO employee)
         {

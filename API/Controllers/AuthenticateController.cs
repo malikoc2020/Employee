@@ -1,12 +1,14 @@
 ﻿using API.Models.Requests;
 using Business.Abstract;
 using Business.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
@@ -19,6 +21,7 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("authenticate")]
+        [AllowAnonymous]
         public async Task<IActionResult> Authenticate(AuthenticateModel model)
         {
             var token = await jwtService.Authenticate(
