@@ -2,6 +2,7 @@
 Repository Pattern Restfull API
 
 # General Description
+- The project was written in .Net 6.0
 - Token Bearer mechanism is established in API.
 - "Microsoft.AspNetCore.Identity.EntityFrameworkCore" package is used for "User - Role" operations.
 - Two default roles; "Admin" and "User" are defined in the project.
