@@ -8,7 +8,7 @@ namespace EntityFramework.Context.Configurations
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
-            builder.ToTable("Bills");
+            builder.ToTable("Employee");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.FirstName).IsRequired();
             builder.Property(x => x.LastName).IsRequired();
