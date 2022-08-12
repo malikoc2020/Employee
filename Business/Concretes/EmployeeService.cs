@@ -23,12 +23,38 @@ namespace Business.Concretes
 
         public ReturnObjectDTO GetEmployee(int id)
         {
-            var employee = EmployeesAsQueryable().FirstOrDefault(x => x.Id == id);
+            var employee = EmployeesAsQueryable().Select(x => new EmployeeDTO()
+            {
+                Id = x.Id
+                                                                                        ,
+                FirstName = x.FirstName
+                                                                                        ,
+                MiddleName = x.MiddleName
+                                                                                        ,
+                LastName = x.LastName
+                                                                                        ,
+                IsActive = x.IsActive
+                                                                                        ,
+                DateCreated = x.DateCreated
+            }).FirstOrDefault(x => x.Id == id);
             return new ReturnObjectDTO() { data = employee, successMessage = "Process is successful." };
         }
         public async Task<ReturnObjectDTO> GetEmployeeAsync(int id)
         {
-            var employee = await EmployeesAsQueryable().FirstOrDefaultAsync(x => x.Id == id);
+            var employee = await EmployeesAsQueryable().Select(x => new EmployeeDTO()
+            {
+                Id = x.Id
+                                                                                        ,
+                FirstName = x.FirstName
+                                                                                        ,
+                MiddleName = x.MiddleName
+                                                                                        ,
+                LastName = x.LastName
+                                                                                        ,
+                IsActive = x.IsActive
+                                                                                        ,
+                DateCreated = x.DateCreated
+            }).FirstOrDefaultAsync(x => x.Id == id);
             return new ReturnObjectDTO() { data = employee, successMessage = "Process is successful." };
         }
 
@@ -132,7 +158,7 @@ namespace Business.Concretes
                 return new ReturnObjectDTO() { isSuccess = false, errorMessage = "Process is NOT successful. No Record Information to be Updated." };
             }
 
-            var entity = repository.GetById(id);// GetEmployee(id);
+            var entity = repository.GetById(id);
             if (entity == null)
             {
                 return new ReturnObjectDTO() { isSuccess = false, errorMessage = "Process is NOT successful. No Record Information to be Updated.(2)" };
@@ -160,7 +186,7 @@ namespace Business.Concretes
                 return new ReturnObjectDTO() { isSuccess = false, errorMessage = "Process is NOT successful. No Record Information to be Updated." };
             }
 
-            var entity = await repository.GetByIdAsync(id);// GetEmployee(id);
+            var entity = await repository.GetByIdAsync(id); 
             if (entity == null)
             {
                 return new ReturnObjectDTO() { isSuccess = false, errorMessage = "Process is NOT successful. No Record Information to be Updated.(2)" };
@@ -189,7 +215,7 @@ namespace Business.Concretes
                 return new ReturnObjectDTO() { isSuccess = false, errorMessage = "Process is NOT successful. No Record Information to be Deleted." };
             }
 
-            var entity = repository.GetById(id);// GetEmployee(id);
+            var entity = repository.GetById(id); 
             if (entity == null)
             {
                 return new ReturnObjectDTO() { isSuccess = false, errorMessage = "Process is NOT successful. No Record Information to be Deleted.(2)" };
